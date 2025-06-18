@@ -3,5 +3,5 @@ volumes/n8n/*
 volumes/postgres/*
 !.gitignore
 .env 
-README.md
+README-private.md
 .DS_Store
