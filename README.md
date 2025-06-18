@@ -1,4 +1,8 @@
-1. create a `.env` file with the following content:
+1. run `git clone https://github.com/CrypticMessenger/n8n-local-starter.git`
+
+2. change directory to the cloned repository: `cd n8n-local-starter`
+
+3. create a `.env` file with the following content:
 
 ```plaintext
 # fill in any values you wish to below
@@ -17,21 +21,21 @@ N8N_COMMUNITY_PACKAGES_ALLOW=true
 N8N_DEFAULT_BINARY_DATA_MODE=filesystem
 ```
 
-2. Signup for a free ngrok account. [link](https://dashboard.ngrok.com/get-started/setup/macos)
+4. Signup for a free ngrok account. [link](https://dashboard.ngrok.com/get-started/setup/macos)
 
-3. follow the installation instructions to install ngrok on your system.
+5. follow the installation instructions to install ngrok on your system.
 `brew install ngrok`
 
-4. Run `ngrok config add-authtoken <YOUR_NGROK_AUTH_TOKEN>` to authenticate your ngrok account.
+6. Run `ngrok config add-authtoken <YOUR_NGROK_AUTH_TOKEN>` to authenticate your ngrok account.
 
-4. claim a static domain for your ngrok account. 
+7. claim a static domain for your ngrok account. 
 
-5. Update the `.env` file with the claimed ngrok domain, e.g. `N8N_EDITOR_BASE_URL=https://xyz-abc-uvw.ngrok-free.app/` and `WEBHOOK_URL=https://xyz-abc-uvw.ngrok-free.app/`.
+8. Update the `.env` file with the claimed ngrok domain, e.g. `N8N_EDITOR_BASE_URL=https://xyz-abc-uvw.ngrok-free.app/` and `WEBHOOK_URL=https://xyz-abc-uvw.ngrok-free.app/`.
 
-5. `docker compose up -d` to start the n8n service.
+9. `docker compose up -d` to start the n8n service.
 
-6. `ngrok http --url=xyz-abc-uvw.ngrok-free.app 5678` to expose the n8n service via ngrok.
+10. `ngrok http --url=xyz-abc-uvw.ngrok-free.app 5678` to expose the n8n service via ngrok.
 
-7. You will be able to access n8n at `https://xyz-abc-uvw.ngrok-free.app/`.
+11. You will be able to access n8n at `https://xyz-abc-uvw.ngrok-free.app/`.
 
-8. `docker compose down` to stop the n8n service.
+12. `docker compose down` to stop the n8n service.
