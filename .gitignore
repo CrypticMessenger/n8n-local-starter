@@ -1,0 +1,7 @@
+volumes/n8n/*
+!.gitignore
+volumes/postgres/*
+!.gitignore
+.env 
+README.md
+.DS_Store

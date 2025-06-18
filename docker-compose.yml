@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: postgres:16
+    restart: always
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_NON_ROOT_USER
+      - POSTGRES_NON_ROOT_PASSWORD
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data
+      - ./init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    restart: always
+    environment:
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=${POSTGRES_DB}
+      - DB_POSTGRESDB_USER=${POSTGRES_NON_ROOT_USER}
+      - DB_POSTGRESDB_PASSWORD=${POSTGRES_NON_ROOT_PASSWORD}
+        # New n8n Public URL and Settings
+      - N8N_EDITOR_BASE_URL
+      - WEBHOOK_URL
+      - N8N_COMMUNITY_PACKAGES_ALLOW # Allows installation of community nodes
+      - N8N_DEFAULT_BINARY_DATA_MODE # Stores binary data (like uploaded files) on the filesystem
+        # instead of in memory, improving stability for larger files.
+    ports:
+      - 5678:5678
+    links:
+      - postgres
+    volumes:
+      - ./volumes/n8n:/home/node/.n8n
+    depends_on:
+      postgres:
+        condition: service_healthy
+
