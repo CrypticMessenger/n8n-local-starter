@@ -1,3 +1,5 @@
+Follow this detailed guide written by me instead: https://medium.com/@ankitsharma61016/get-started-with-n8n-100-free-100-locally-fa4c544b2f22
+
 1. run `git clone https://github.com/CrypticMessenger/n8n-local-starter.git`
 
 2. change directory to the cloned repository: `cd n8n-local-starter`
